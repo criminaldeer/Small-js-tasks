@@ -5,18 +5,20 @@
     <title>valid email</title>
 </head>
 <body>
-    <form = name="form">
+    <form name="form">
         <input id="email" type="email" name="email" placeholder="Your e-mail" size="25" style="padding:4px"/>
-        <input type="submit" name="submit" value="Submit" onclick="validate(email)" style="padding:4px; cursor:pointer"/>
+        <input type="submit" name="submit" value="Submit" onclick="return validate(email)" style="padding:4px; cursor:pointer"/>
     </form>
+    <span id="not-valid" style="color:red; display: none">Email is not Valid. Try one more time</span>
     <script>
         function validate(email){
             var expression = /^\w+@[a-zA-Z_]+\.[a-zA-Z]{2,3}$/;
             var email = document.getElementById("email").value;
             var form = document.getElementsByName("form");
-            var t = document.createTextNode("Email is Valid");
+            
             if (!expression.test(email)) {
-                alert("Email is not Valid. Try one more time");
+                document.getElementById("not-valid").style.display = "inline";
+                return false;
             } 
         }
     </script>
